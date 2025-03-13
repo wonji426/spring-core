@@ -3,7 +3,6 @@ package hello.core.beanfind;
 import hello.core.AppConfig;
 import hello.core.member.MemberService;
 import hello.core.member.MemberServiceImpl;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
@@ -40,9 +39,7 @@ class ApplicationContextBasicFindTest {
     @Test
     @DisplayName("빈 이름으로 조회X")
     void findBeanByNameX() {
-        //ac.getBean("XXXXX", MemberService.class);
-        //MemberService XXXXX = ac.getBean("XXXXX", MemberService.class);
-        assertThrows(NoSuchBeanDefinitionException.class,//getBean을 했을 때 노서치빈데피니션인셉션이 터져야 오케이
-                ()-> ac.getBean("XXXXX", MemberService.class));
+        assertThrows(NoSuchBeanDefinitionException.class,//겟빈을 했을 때 노서치빈데피니션인셉션이 터져야 오케이
+                ()-> ac.getBean("memberService4", MemberService.class));
     }
 }

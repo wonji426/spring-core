@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import java.lang.annotation.Annotation;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SingletonTest {

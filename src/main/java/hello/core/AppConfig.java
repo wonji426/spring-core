@@ -30,6 +30,7 @@ public class AppConfig {
     //2. call AppConfig.memberRepository
     //3. call AppConfig.orderService
     //스프링이 싱글톤을 보장해줌
+    //@Configuration 제거하면 싱글톤 보장 안됨
 
     @Bean
     public MemberService memberService() {

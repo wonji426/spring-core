@@ -32,4 +32,14 @@ public class ConfigurationSingletonTest {
 
         System.out.println("memberRepository = " + memberRepository);
     }
+
+    @Test
+    void configurationDeep() {
+        ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+
+        AppConfig bean = ac.getBean(AppConfig.class);
+
+        System.out.println("bean = " + bean.getClass()); // 단순 클래스가 아님. AppConfig 뒤에 $$SpringCGLIB 붙음
+        // AppConfig$$SpringCGLIB 싱글톤을 보장해 줌
+    }
 }

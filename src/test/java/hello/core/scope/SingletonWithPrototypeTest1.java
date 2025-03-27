@@ -2,6 +2,7 @@ package hello.core.scope;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import jakarta.inject.Provider;
 import lombok.Getter;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,20 +35,18 @@ public class SingletonWithPrototypeTest1 {
 
         ClientBean clientBean2 = ac.getBean(ClientBean.class);
         int count2 = clientBean1.logic();
-        assertThat(count2).isEqualTo(2);
+        assertThat(count2).isEqualTo(1);
 
     }
 
     @Scope("singleton")
     static class ClientBean {
-        private final PrototypeBean prototypeBean; //생성 시점에 주입
 
         @Autowired
-        ClientBean(PrototypeBean prototypeBean) {
-            this.prototypeBean = prototypeBean;
-        }
+        private Provider<PrototypeBean> prototypeBeanProvider;
 
         public int logic() {
+            PrototypeBean prototypeBean = prototypeBeanProvider.get();
             prototypeBean.addCount();
             return prototypeBean.getCount();
         }
